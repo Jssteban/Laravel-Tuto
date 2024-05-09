@@ -11,8 +11,14 @@
     <p>estas en la categoria {{$curso->categoria}}</p>
     <p>del codigo {{$curso->codigo}}</p>
     <br>
-    <a href="{{route('curso.index')}}">Volver a la pagina principal de cursos</a>
+    <a href="{{route('cursos.index')}}">Volver a la pagina principal de cursos</a>
     <br><br>
-    <a href="">Ir a editar un curso</a>
+    <a href="{{route('cursos.edit',$curso)}}">Ir a editar un curso</a>
+
+    <form action="{{route('cursos.destroy', $curso)}}" method="POST">
+        @csrf
+        @method('delete')
+        <button type="submit">Eliminar</button>
+    </form>
 </body>
 </html>

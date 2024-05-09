@@ -7,15 +7,16 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>aqui podras crear un curso</h1>
-    <form action="{{route('cursos.store')}}" method="POST">
+    <h1>en esta pagina podras editar un curso</h1>
+    <form action="{{route('cursos.update', $curso)}}" method="POST">
         
         @csrf
+        @method('put')
 
         <label >
-             Nombre
+            Nombre
             <br>
-            <input type="text" name="nombre" value="{{old('nombre')}}">
+            <input type="text" name="nombre" value="{{old('nombre',$curso->nombre)}}">
         </label>
         @error('nombre')
         <br>
@@ -26,9 +27,8 @@
         <label >
             codigo
             <br>
-            <input type="text" name="codigo" value="{{old('codigo')}}">
+            <input type="text" name="codigo" value="{{old('codigo', $curso->codigo)}}">
         </label>
-        <br>
         @error('codigo')
         <br>
         <span>{{$message}}</span>
@@ -38,15 +38,15 @@
         <label >
             categoria
             <br>
-            <input type="text" name="categoria" value="{{old('categoria')}}">
+            <input type="text" name="categoria" value="{{old('categoria',$curso->categoria)}}">
         </label>
         @error('categoria')
         <br>
         <span>{{$message}}</span>
-        <br>  
+        <br>   
         @enderror
         <br>
-        <button type="submit">enviar</button>
+        <button type="submit">Actualiza formulario</button>
     </form>
 </body>
 </html>
